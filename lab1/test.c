@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
-#define SIZE 450000
+#define SIZE 600000
 
 uint32_t getrand(int min, int max)
 {
@@ -137,6 +137,8 @@ void print_arr(uint32_t array[], int size)
 
 int main()
 {
+    FILE *myfile;
+    myfile = fopen("hello.txt", "wb");
     srand(wtime());
     uint32_t *array_cnt = (uint32_t *)malloc(sizeof(uint32_t) * SIZE);
     uint32_t *array_bub = (uint32_t *)malloc(sizeof(uint32_t) * SIZE);
@@ -153,8 +155,8 @@ int main()
     double start_t = wtime();
     counting_sort(array_cnt, SIZE);
     double end_t = wtime();
-    print_arr(array_cnt, SIZE);
-    printf("Counting Sort time:  %f\n", end_t - start_t);
+    fprintf(myfile, "%f", end_t - start_t);
+    /*printf("Counting Sort time:  %f\n", end_t - start_t);
     start_t = wtime();
     bubble_sort(array_bub, SIZE);
     end_t = wtime();
@@ -166,6 +168,6 @@ int main()
     printf("Merge sort time:     %f\n", end_t - start_t);
 
     free(array_cnt);
-    free(array_bub);
+    free(array_bub);*/
     return 0;
 }   
